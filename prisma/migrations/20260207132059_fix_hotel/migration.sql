@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Hotel" ALTER COLUMN "description" DROP NOT NULL,
+ALTER COLUMN "amenities" SET DEFAULT ARRAY[]::TEXT[],
+ALTER COLUMN "rating" SET DEFAULT 0.0,
+ALTER COLUMN "totalReviews" SET DEFAULT 0;
