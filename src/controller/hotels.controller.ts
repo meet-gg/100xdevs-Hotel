@@ -137,11 +137,11 @@ const getHotels = async (req: Request<{}, {}, {}, hotelQueryType>, res: Response
     const hotels = await prisma.hotel.findMany({
         where: {
             ...(city && {
-                city: { contains: city, mode: "insensitive" }
+                city: { equals: city, mode: "insensitive" }
             }),
 
             ...(country && {
-                country: { contains: country, mode: "insensitive" }
+                country: { equals: country, mode: "insensitive" }
             }),
 
             ...(minR !== undefined && {
