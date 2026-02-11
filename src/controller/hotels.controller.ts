@@ -125,14 +125,14 @@ const getHotels = async (req: Request<{}, {}, {}, hotelQueryType>, res: Response
     const maxP = maxPrice ? Number(maxPrice) : undefined;
     const minR = minRating ? Number(minRating) : undefined;
 
-    const pricePerNightFilter: any = {};
-    if (minP !== undefined) pricePerNightFilter.gte = minP;
-    if (maxP !== undefined) pricePerNightFilter.lte = maxP;
+    // const pricePerNightFilter: any = {};
+    // if (minP !== undefined) pricePerNightFilter.gte = minP;
+    // if (maxP !== undefined) pricePerNightFilter.lte = maxP;
 
-    const priceRoomFilter =
-        Object.keys(pricePerNightFilter).length > 0
-            ? { pricePerNight: pricePerNightFilter }
-            : {};
+    // const priceRoomFilter =
+    //     Object.keys(pricePerNightFilter).length > 0
+    //         ? { pricePerNight: pricePerNightFilter }
+    //         : {};
 
     const hotels = await prisma.hotel.findMany({
         where: {
@@ -149,7 +149,12 @@ const getHotels = async (req: Request<{}, {}, {}, hotelQueryType>, res: Response
             }),
 
             rooms: {
-                some: priceRoomFilter
+                some: {
+                    pricePerNight: {
+                        ...(minP !== undefined && { gte: minP }),
+                        ...(maxP !== undefined && { lte: maxP }),
+                    }
+                }
             }
         },
 
@@ -164,7 +169,12 @@ const getHotels = async (req: Request<{}, {}, {}, hotelQueryType>, res: Response
             totalReviews: true,
 
             rooms: {
-                where: priceRoomFilter,
+                where: {
+                    pricePerNight: {
+                        ...(minP !== undefined && { gte: minP }),
+                        ...(maxP !== undefined && { lte: maxP }),
+                    }
+                },
                 select: {
                     pricePerNight: true
                 }
