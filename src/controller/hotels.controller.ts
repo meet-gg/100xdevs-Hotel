@@ -144,15 +144,15 @@ const getHotels = async (req: Request<{}, {}, {}, hotelQueryType>, res: Response
                 country: { equals: country, mode: "insensitive" }
             }),
 
-            ...(minR !== undefined && {
+            ...(minR && {
                 rating: { gte: minR }
             }), 
 
             rooms: {
                 some: {
                     pricePerNight: {
-                        ...(minP !== undefined && { gte: minP }),
-                        ...(maxP !== undefined && { lte: maxP }),
+                        ...(minP && { gte: minP }),
+                        ...(maxP && { lte: maxP }),
                     }
                 }
             }
@@ -171,8 +171,8 @@ const getHotels = async (req: Request<{}, {}, {}, hotelQueryType>, res: Response
             rooms: {
                 where: {
                     pricePerNight: {
-                        ...(minP !== undefined && { gte: minP }),
-                        ...(maxP !== undefined && { lte: maxP }),
+                        ...(minP && { gte: minP }),
+                        ...(maxP && { lte: maxP }),
                     }
                 },
                 select: {
