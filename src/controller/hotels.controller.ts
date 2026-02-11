@@ -146,7 +146,7 @@ const getHotels = async (req: Request<{}, {}, {}, hotelQueryType>, res: Response
 
             ...(minR !== undefined && {
                 rating: { gte: minR }
-            }),
+            }), 
 
             rooms: {
                 some: {
