@@ -3,7 +3,7 @@ import { bookingValidation } from "../utils/validation.user.ts";
 import { ApiError } from "../utils/ApiError.ts";
 import { prisma } from "../utils/db.ts";
 import { ApiResponse } from "../utils/ApiResponse.ts";
-import type { Status } from "../utils/type";
+import type { Status } from "../utils/type.d.ts";
 import { asyncHandler } from "../utils/asyncHandler.ts";
 
 
@@ -89,7 +89,7 @@ const createBooking = asyncHandler(async (req: Request, res: Response) => {
             totalPrice,
             userId: user.id,
             hotelId: room.hotelId,
-            status : "confirmed"
+            // status : "confirmed"
         }
     });
 
@@ -108,7 +108,7 @@ const createBooking = asyncHandler(async (req: Request, res: Response) => {
             .json(new ApiError(400, "INVALID_REQUEST"));
     }
 
-    // console.log(savedBooking);
+    console.log(savedBooking);
 
     return res.
         status(201).

@@ -1164,8 +1164,8 @@ describe('Hotel Management System - Comprehensive Tests', () => {
     });
     
     test('should create booking successfully as customer and validate all fields', async () => {
-      const checkIn = '2026-02-15';
-      const checkOut = '2026-02-18';
+      const checkIn = '2026-02-16';
+      const checkOut = '2026-02-19';
       
       const { status, body } = await apiRequest('/api/bookings', {
         method: 'POST',
@@ -1202,8 +1202,8 @@ describe('Hotel Management System - Comprehensive Tests', () => {
         },
         body: JSON.stringify({
           roomId,
-          checkInDate: '2026-02-15',
-          checkOutDate: '2026-02-18',
+          checkInDate: '2026-02-16',
+          checkOutDate: '2026-02-19',
           guests: 2,
         }),
       });
@@ -1220,8 +1220,8 @@ describe('Hotel Management System - Comprehensive Tests', () => {
         },
         body: JSON.stringify({
           roomId,
-          checkInDate: '2026-02-16',
-          checkOutDate: '2026-02-19',
+          checkInDate: '2026-02-17',
+          checkOutDate: '2026-02-20',
           guests: 2,
         }),
       });
@@ -1238,8 +1238,8 @@ describe('Hotel Management System - Comprehensive Tests', () => {
         },
         body: JSON.stringify({
           roomId,
-          checkInDate: '2026-02-18',
-          checkOutDate: '2026-02-20',
+          checkInDate: '2026-02-19',
+          checkOutDate: '2026-02-21',
           guests: 2,
         }),
       });
@@ -1513,8 +1513,8 @@ describe('Hotel Management System - Comprehensive Tests', () => {
         },
         body: JSON.stringify({
           roomId: room2Id,
-          checkInDate: '2026-12-15',
-          checkOutDate: '2026-12-18',
+          checkInDate: '2026-12-16',
+          checkOutDate: '2026-12-19',
           guests: 2,
         }),
       });
