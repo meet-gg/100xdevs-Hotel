@@ -3,8 +3,9 @@ import { reviewValidation } from "../utils/validation.user.ts"
 import { ApiError } from "../utils/ApiError.ts";
 import { prisma } from "../utils/db.ts";
 import { ApiResponse } from "../utils/ApiResponse.ts";
+import { asyncHandler } from "../utils/asyncHandler.ts";
 
-const review = async (req: Request, res: Response) => {
+const review = asyncHandler(async (req: Request, res: Response) => {
     const user = req.user;
     if (!user) {
         return res
@@ -104,6 +105,6 @@ const review = async (req: Request, res: Response) => {
     return res.
         status(201)
         .json(new ApiResponse(201, savedReview));
-}
+});
 
 export { review };

@@ -4,9 +4,10 @@ import { ApiError } from "../utils/ApiError.ts";
 import { prisma } from "../utils/db.ts";
 import { ApiResponse } from "../utils/ApiResponse.ts";
 import type { Status } from "../utils/type";
+import { asyncHandler } from "../utils/asyncHandler.ts";
 
 
-const createBooking = async (req: Request, res: Response) => {
+const createBooking = asyncHandler(async (req: Request, res: Response) => {
     const user = req.user;
     if (!user) {
         return res
@@ -113,9 +114,9 @@ const createBooking = async (req: Request, res: Response) => {
         status(201).
         json(new ApiResponse(201, savedBooking));
 
-}
+});
 
-const getBooking = async (req: Request<{}, {}, {}, { status: Status }>, res: Response) => {
+const getBooking = asyncHandler(async (req: Request<{}, {}, {}, { status: Status }>, res: Response) => {
     const user = req.user;
     if (!user) {
         return res
@@ -163,10 +164,10 @@ const getBooking = async (req: Request<{}, {}, {}, { status: Status }>, res: Res
     return res.
         status(200)
         .json(new ApiResponse(200, responseBookings));
-}
+});
 
 
-const cancelBooking = async (req: Request<{ bookingId: string }>, res: Response) => {
+const cancelBooking = asyncHandler(async (req: Request<{ bookingId: string }>, res: Response) => {
     const user = req.user;
     if (!user) {
         return res
@@ -232,6 +233,6 @@ const cancelBooking = async (req: Request<{ bookingId: string }>, res: Response)
 
     return res.
         status(200).json(new ApiResponse(200, bookingg));
-}
+});
 
 export { createBooking, getBooking,cancelBooking }

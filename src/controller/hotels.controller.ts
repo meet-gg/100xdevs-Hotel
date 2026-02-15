@@ -4,8 +4,9 @@ import { hotelValidation, roomValidation } from "../utils/validation.user.ts";
 import { ApiError } from "../utils/ApiError.ts";
 import { ApiResponse } from "../utils/ApiResponse.ts";
 import type { hotelQueryType } from "../utils/type";
+import { asyncHandler } from "../utils/asyncHandler.ts";
 
-const createHotel = async (req: Request, res: Response) => {
+const createHotel = asyncHandler(async (req: Request, res: Response) => {
 
     const owner = req.user;
     if (!owner) {
@@ -50,10 +51,10 @@ const createHotel = async (req: Request, res: Response) => {
     return res.
         status(201).
         json(new ApiResponse(201, createdHotel))
-};
+});
 
 
-const createRoom = async (req: Request, res: Response) => {
+const createRoom = asyncHandler(async (req: Request, res: Response) => {
     const validation = await roomValidation.safeParseAsync(req.body);
     if (!validation.success) {
         return res
@@ -115,9 +116,9 @@ const createRoom = async (req: Request, res: Response) => {
         status(201)
         .json(new ApiResponse(201, createdRoom));
 
-}
+});
 
-const getHotels = async (req: Request<{}, {}, {}, hotelQueryType>, res: Response) => {
+const getHotels = asyncHandler(async (req: Request<{}, {}, {}, hotelQueryType>, res: Response) => {
 
     const { city, country, minPrice, maxPrice, minRating } = req.query;
 
@@ -199,9 +200,9 @@ const getHotels = async (req: Request<{}, {}, {}, hotelQueryType>, res: Response
 
     return res.status(200).json(new ApiResponse(200, data));
 
-}
+});
 
-const getHotelById = async (req: Request<{ hotelId: string }>, res: Response) => {
+const getHotelById = asyncHandler(async (req: Request<{ hotelId: string }>, res: Response) => {
     const hotelId = req?.params?.hotelId;
     if (!hotelId) {
         return res
@@ -240,7 +241,7 @@ const getHotelById = async (req: Request<{ hotelId: string }>, res: Response) =>
             ...hotel,
             rooms
         }));
-}
+});
 
 
 export { createHotel, createRoom, getHotelById, getHotels };

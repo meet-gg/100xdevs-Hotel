@@ -6,10 +6,11 @@ import type { payloadType, signUpType } from '../utils/type.d.ts';
 import { loginUserValidation, signUpUserValidation } from '../utils/validation.user.ts';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { asyncHandler } from '../utils/asyncHandler.ts';
 
 // const data = prisma.user
 
-const signUp = async (req: Request<{},{},signUpType>, res: Response) => {
+const signUp = asyncHandler(async (req: Request<{},{},signUpType>, res: Response) => {
     const validation = await signUpUserValidation.safeParseAsync(req.body);
 
     if (!validation.success) {
@@ -64,9 +65,9 @@ const signUp = async (req: Request<{},{},signUpType>, res: Response) => {
     return res
         .status(201)
         .json(new ApiResponse(201, savedUser));
-}
+});
 
-const login = async (req: Request, res: Response) => {
+const login = asyncHandler(async (req: Request, res: Response) => {
     const validation = await loginUserValidation.safeParseAsync(req.body);
 
     if (!validation.success) {
@@ -146,6 +147,6 @@ const login = async (req: Request, res: Response) => {
         .cookie('refreshToken', refreshToken, optins)
         .cookie('accessToken', accessToken, optins)
         .json(new ApiResponse(200, { token: accessToken, user: responseUser }));
-}
+});
 
 export { signUp, login };
