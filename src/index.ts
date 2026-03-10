@@ -1,5 +1,5 @@
-import { dbConnect, } from "./utils/db.ts";
-import { app } from "./app.ts";
+import { dbConnect, } from "./utils/db";
+import { app } from "./app";
 dbConnect().then(() => {
     app.listen(3000, () => {
         console.log(`server running on http://localhost:${3000}`);

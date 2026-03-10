@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { role, verifyJWT } from "../middleware/auth.middleware.ts";
-import { cancelBooking, createBooking, getBooking } from "../controller/booking.controller.ts";
+import { role, verifyJWT } from "../middleware/auth.middleware";
+import { cancelBooking, createBooking, getBooking } from "../controller/booking.controller";
 
 const router = Router();
 

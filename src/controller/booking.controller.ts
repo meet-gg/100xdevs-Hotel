@@ -1,10 +1,10 @@
 import type { Request, Response } from "express";
-import { bookingValidation } from "../utils/validation.user.ts";
-import { ApiError } from "../utils/ApiError.ts";
-import { prisma } from "../utils/db.ts";
-import { ApiResponse } from "../utils/ApiResponse.ts";
-import type { Status } from "../utils/type.d.ts";
-import { asyncHandler } from "../utils/asyncHandler.ts";
+import { bookingValidation } from "../utils/validation.user";
+import { ApiError } from "../utils/ApiError";
+import { prisma } from "../utils/db";
+import { ApiResponse } from "../utils/ApiResponse";
+import type { Status } from "../utils/type.d";
+import { asyncHandler } from "../utils/asyncHandler";
 
 
 const createBooking = asyncHandler(async (req: Request, res: Response) => {
@@ -36,7 +36,7 @@ const createBooking = asyncHandler(async (req: Request, res: Response) => {
     });
 
     if (!room) {
-        return res.
+        return res.     
             status(404)
             .json(new ApiError(404, "ROOM_NOT_FOUND"));
     }

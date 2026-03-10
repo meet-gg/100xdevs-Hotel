@@ -1,12 +1,12 @@
-import { ApiError } from '../utils/ApiError.ts';
-import { ApiResponse } from '../utils/ApiResponse.ts';
-import { prisma } from '../utils/db.ts';
+import { ApiError } from '../utils/ApiError';
+import { ApiResponse } from '../utils/ApiResponse';
+import { prisma } from '../utils/db';
 import { type Request, type Response } from 'express';
-import type { payloadType, signUpType } from '../utils/type.d.ts';
-import { loginUserValidation, signUpUserValidation } from '../utils/validation.user.ts';
+import type { payloadType, signUpType } from '../utils/type.d';
+import { loginUserValidation, signUpUserValidation } from '../utils/validation.user';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { asyncHandler } from '../utils/asyncHandler.ts';
+import { asyncHandler } from '../utils/asyncHandler';
 
 // const data = prisma.user
 

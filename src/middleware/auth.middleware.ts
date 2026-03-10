@@ -1,7 +1,7 @@
 import jwt, { type JwtPayload } from "jsonwebtoken";
 import type { NextFunction, Request, Response } from "express";
-import { ApiError } from "../utils/ApiError.ts";
-import type { payloadType } from "../utils/type.d.ts";
+import { ApiError } from "../utils/ApiError";
+import type { payloadType } from "../utils/type.d";
 
 export const verifyJWT = async (req: Request , res: Response, next: NextFunction) => {
     // console.log(req.cookies);

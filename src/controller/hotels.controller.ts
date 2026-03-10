@@ -1,10 +1,10 @@
 import { type Request, type Response } from "express";
-import { prisma } from '../utils/db.ts'
-import { hotelValidation, roomValidation } from "../utils/validation.user.ts";
-import { ApiError } from "../utils/ApiError.ts";
-import { ApiResponse } from "../utils/ApiResponse.ts";
+import { prisma } from '../utils/db'
+import { hotelValidation, roomValidation } from "../utils/validation.user";
+import { ApiError } from "../utils/ApiError";
+import { ApiResponse } from "../utils/ApiResponse";
 import type { hotelQueryType } from "../utils/type";
-import { asyncHandler } from "../utils/asyncHandler.ts";
+import { asyncHandler } from "../utils/asyncHandler";
 
 const createHotel = asyncHandler(async (req: Request, res: Response) => {
 

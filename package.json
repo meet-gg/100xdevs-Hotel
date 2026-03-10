@@ -11,14 +11,18 @@
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio --config ./prisma.config.ts",
     "db:pull": "npx prisma db pull",
-    "generate": "npx prisma generate"
+    "generate": "npx prisma generate",
+    "build": "tsup src/index.ts --format esm --outDir dist",
+    "start": "node ./dist/index.js"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.2.0",
     "@types/pg": "^8.16.0",
-    "prisma": "^7.4.0"
+    "prisma": "^7.4.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0"
   },
   "peerDependencies": {
     "typescript": "^5"

@@ -1,9 +1,9 @@
 import type { Request, Response } from "express"
-import { reviewValidation } from "../utils/validation.user.ts"
-import { ApiError } from "../utils/ApiError.ts";
-import { prisma } from "../utils/db.ts";
-import { ApiResponse } from "../utils/ApiResponse.ts";
-import { asyncHandler } from "../utils/asyncHandler.ts";
+import { reviewValidation } from "../utils/validation.user"
+import { ApiError } from "../utils/ApiError";
+import { prisma } from "../utils/db";
+import { ApiResponse } from "../utils/ApiResponse";
+import { asyncHandler } from "../utils/asyncHandler";
 
 const review = asyncHandler(async (req: Request, res: Response) => {
     const user = req.user;
